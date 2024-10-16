@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Endeavour SLIET">
+    <meta property="og:description" content="An official robotics club of SLIET, Longowal">
+    <meta property="og:url" content="https://endeavoursliet.in">
+    <meta property="og:image" content="https://endeavoursliet.in/images/mainlogo.png">
+    <meta name="keywords" content="endeavour, endeavoursliet, sliet, endeavor, endeavorsliet, techfest, techfest22, madhuram, longowal, sangrur, delhi, iitbombay, iitdelhi, iit, nit, cfti, cuturalfest, mhrd, govt, endeavour recruitment">
+    <meta name="description" content="Official Website of Team Endeavour, Sliet Longowal">
+    <title>Our Team | Endeavour</title>
+    <link rel="icon" type="image/png" href="/images/10Artboard 1_1maroon Endeavour.png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/css/style.css">
+    <link rel="stylesheet" href="/stylesheets/css/front.css">
+    <link rel="stylesheet" href="/stylesheets/css/styleTeams.css">
+    <link rel="stylesheet" href="/stylesheets/css/responsive.css">
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+    <style>
+        .view-profile-button {
+            margin-top: 10px;
+        }
+        .view-profile-button .btn {
+            display: inline-block;
+            padding: 2px 5px;
+            background-color: white;
+            font-size: 15px;
+            color: #009688;
+            background-color: 49A1BF;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+        .view-profile-button .btn:hover {
+            color: #a00000;
+        }
+        #loadingSpinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+
+    <nav>
+        <div class="container">
+            <div class="left"><a href="/"><img src="/images/mainlogo.png" alt=""></a></div>
+            <div class="navWebName">Endeavour</div>
+            <div class="tl" onclick="toggleMobileNav()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M0 0h24v24H0V0z" fill="none"></path>
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+            </div>
+            <div class="center">
+                <ul class="ul navUl">
+                    <li><a class="home navUlLi " href="/">Home</a></li>
+                    <li><a class="about navUlLi" href="/pages/about.html">About Us</a></li>
+                    <li><a class="domain navUlLi " href="/pages/domain.html">Domains</a></li>
+                    <li><a class="sponsers" href="/pages/sponsors.html">Sponsors</a></li>
+                    <li><a class="team navUlLi active" href="/pages/teams.html">Team</a></li>
+                    <li><a class="login navUlLi" href="/pages/login/loginas.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="right"><a href="/"><img src="/images/SLIET_in_Colours_of_ENDEAVOUR.png" alt=""></a></div>
+        </div>
+    </nav>
+
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="flex-center"><a href="/pages/teams/faculty.html">Faculty</a></li>
+            <li class="flex-center"><a href="/pages/teams/alumni.html">Alumni</a></li>
+            <li class="flex-center"><a href="/pages/teams/core_committee.html">Endeavour Committee</a></li>
+            <li class="flex-center"><a href="/pages/teams/members.html">Members</a></li>
+        </ul>
+    </nav>
+
+    
+
+    <section class="team-section">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h1>Members</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="team-items">
+                    <!-- Members will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer"></footer>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/footer.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+        import { firebaseConfig } from '/configs/firebase.js';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Function to create a user card
+        function createUserCard(user) {
+            return `
+                <div class="item">
+                    <img src="${user.profileImageUrl || '/images/default-profile.jpg'}" alt="${user.name}">
+                    <div class="inner">
+                        <div class="info">
+                            <h5>${user.name}</h5>
+                            <p>${user.post || 'Member'}</p>
+                            <div class="view-profile-button">
+                                <a href="/pages/teams/viewProfile.html?profileId=${user.uid}" class="btn btn-primary">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to populate user list
+        function populateUserList(users) {
+            const teamItems = document.querySelector('.team-items');
+            teamItems.innerHTML = '';
+            users.forEach(user => {
+                if (user.teamRole === 'Members') {
+                    teamItems.innerHTML += createUserCard(user);
+                }
+            });
+        }
+
+        // Function to show and hide loading spinner
+        function showLoadingSpinner() {
+            document.getElementById('loadingSpinner').style.display = 'flex';
+        }
+
+        function hideLoadingSpinner() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        // Fetch users from Firebase
+        showLoadingSpinner();
+        const usersRef = ref(db, 'users');
+        onValue(usersRef, (snapshot) => {
+            const users = [];
+            snapshot.forEach((childSnapshot) => {
+                users.push(childSnapshot.val());
+            });
+            populateUserList(users);
+            hideLoadingSpinner();
+        }, (error) => {
+            console.error("Error fetching users:", error);
+            hideLoadingSpinner();
+        });
+    </script>
+</body>
+
+</html>

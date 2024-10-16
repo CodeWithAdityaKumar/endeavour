@@ -1,0 +1,21 @@
+.raceDroneImage{
+    background:url(../images/LFR.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: contain;
+}
+.deliveryDroneImage{
+    background: url(../images/rc_car_endeavour.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+    background-size: contain;
+}
+.rcPlaneImage{
+    background: url(../images/combat_robot.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: contain;
+}

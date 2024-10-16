@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wisdom</title>
+    <link rel="stylesheet" href="../css/login/secondnav.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/front.css">
+  <!-- <link rel="stylesheet" href="../css/login/wisdom.css"> -->
+  <link rel="stylesheet" href="../css/login/outputform.css">
+  </head>
+<body>
+   <!-- TOP NAVIGATION -->
+   <nav class="topNav" id="navSticky">
+    <div class="emptySpace25">
+        <div class="endeavourLogo"><a href="#"><img src="../images/mainlogo.png" alt="Endeavour-Logo" srcset=""></a></div>
+    </div>
+    <ul class="navArray">
+      <li class="navComponent flex-center"><a href="../index.html#home" class="flex-center">HOME</a></li>
+      <li class="navComponent flex-center"><a href="#" class="flex-center  activeTopNav">ABOUT US</a></li>
+      <li class="navComponent flex-center"><a href="../projects.html#UAVs" class="flex-center">DOMAINS</a></li>
+      <li class="navComponent flex-center"><a href="../index.html#sponsors" class="flex-center">SPONSORS</a></li>
+      <li class="navComponent flex-center"><a href="../teams.html#alumni" class="flex-center">TEAM</a></li>
+  </ul>
+    <div class="emptySpace25">
+        <div class="endeavourLogo"><a href="http://sliet.ac.in/" target="_blank" rel="noopener noreferrer"><img src="../images/SLIET_in_Colours_of_ENDEAVOUR.png" alt="Endeavour-Logo" srcset=""></a></div>
+    </div>
+</nav>
+<div class="adminnav">
+  <div class="adminnavpart"><a href="./userwisdom.html" >EXPERIENCE</a></div>
+  <div class="adminnavpart"><a href="./blogshow.html" >ARTICLE/BLOG</a></div>
+  <div class="adminnavpart"><a href="./userfeedback.html" >FEEDBACK</a></div>
+</div>
+    <!-- <div class="welcomemember">WELCOME TO ENDEAVOUR</div> -->
+<div class="blog" style="font-size: 2rem;font-weight: bolder;">ARTICLE</div>
+      
+<div id="tbody">
+
+     
+    </div>
+    <div id="myDiv"></div>
+
+  
+    <script type="module">
+      var stdNo;
+
+      function AddItemToTable(name, email, wow) {
+        let trow = document.createElement("tr");
+     
+        let td2 = document.createElement("div");
+   
+        let td4 = document.createElement("div");
+      
+
+        td2.innerHTML = name;
+        td2.className='td2class';
+        console.log("i am also working");
+  
+        td4.innerHTML = wow;
+        td4.className="td4class";
+        console.log(name, email, wow);
+        let newnode = document.createElement("div");
+        newnode.className = "divclass";
+        newnode.id='content';
+        newnode.appendChild(td2);
+        newnode.appendChild(td4);
+      
+        let existingnode = document.getElementById("myDiv").firstChild;
+        document.getElementById("myDiv").insertBefore(newnode, existingnode);
+      }
+      function AddAllItemsToTable(TheStudent) {
+        stdNo = 0;
+        tbody.innnerHTML = " ";
+        TheStudent.forEach((element) => {
+          AddItemToTable(element.name, element.email, element.wow);
+        });
+      }
+
+      // < src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
+      //         <!-- <script type="module">//YEH ISME KERMA PAD RAHA  HER BER SCRIPT DECLERA KERNE KE LIYE -->
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onValue,
+        get,
+        child,
+      } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+      //  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+    apiKey: "AIzaSyCp_chWInsV85Vrx0JCl2jZyiY2PWpKRTI",
+    authDomain: "endeavourblog-76ed5.firebaseapp.com",
+    projectId: "endeavourblog-76ed5",
+    storageBucket: "endeavourblog-76ed5.appspot.com",
+    messagingSenderId: "730573597962",
+    appId: "1:730573597962:web:d68edae362dcfeec845ef3",
+    measurementId: "G-1F9C4LHG23"
+  };
+      //INTIALISE DATABASE
+
+      // let id = Date.now();
+      //    const auth = getAuth();
+      const app = initializeApp(firebaseConfig); //initilise fire base kerne ke liye
+      const db = getDatabase();
+
+      function GetAllDataOnce() {
+        const dbRef = ref(db);
+
+        get(child(dbRef, `users`)).then((snapshot) => {
+          var students = [];
+          snapshot.forEach((childSnapshot) => {
+            students.push(childSnapshot.val());
+          });
+          console.log("i am working");
+
+          AddAllItemsToTable(students);
+        });
+      }
+
+      window.onload = GetAllDataOnce;
+    </script>
+  </body>
+</html>

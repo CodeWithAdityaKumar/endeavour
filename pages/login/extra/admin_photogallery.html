@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_phtogallery</title>
+</head>
+<body>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        
+        import {
+          getStorage,
+          ref,
+          uploadBytes,
+          getDownloadURL,
+        } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+        import {
+          getDatabase,
+          set,
+          ref as dbRef,
+        } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+    
+    
+      
+    
+      const firebaseConfig={
+      apiKey: "AIzaSyB1Ha5LYqm2j5mfbLWUNuWOeZ2Vp9aT50I",
+      authDomain: "endeavouradminpanel.firebaseapp.com",
+      databaseURL: "https://endeavouradminpanel-default-rtdb.firebaseio.com",
+      projectId: "endeavouradminpanel",
+      storageBucket: "endeavouradminpanel.appspot.com",
+      messagingSenderId: "1059223226055",
+      appId: "1:1059223226055:web:b5493b3554d9d03e2d20e2",
+      measurementId: "G-0JFS3KJQQB",
+      };
+    //   initializeApp(firebaseConfig);
+        const root = getDatabase();
+        const storage = getStorage();
+
+        firebase.initializeApp(config);
+        function showimage(){
+            var storageRef =firebase.storage().ref();
+            var spaceRef = storageRef.child('xyz.png');
+            storageRef.child('xyz.png').getDownloadURL
+            .then(function(url){
+                var test = url;
+                alert(url);
+                document.querySelector('img').src=test;
+            }).catch(function(error){
+
+            });
+          
+        }
+    </script>
+       <input type="button" value ="view Image" id="viewbtn" onclick="showimage();">
+       <img src="test" height="125px" width="200px"/> 
+</body>
+</html>

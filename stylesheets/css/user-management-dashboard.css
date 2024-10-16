@@ -1,0 +1,8 @@
+/* Add any custom styles here */
+.user-action-button {
+    @apply bg-blue-500 text-white px-2 py-1 rounded text-sm mr-2;
+}
+
+.user-action-button:hover {
+    @apply bg-blue-600;
+}

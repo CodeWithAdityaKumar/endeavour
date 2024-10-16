@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Endeavour SLIET">
+    <meta property="og:description" content="An official robotics club of SLIET, Longowal">
+    <meta property="og:url" content="https://endeavoursliet.in">
+    <meta property="og:image" content="https://endeavoursliet.in/images/mainlogo.png">
+    <meta name="keywords" content="endeavour, endeavoursliet, sliet, endeavor, endeavorsliet, techfest, techfest22, madhuram, longowal, sangrur, delhi, iitbombay, iitdelhi, iit, nit, cfti, cuturalfest, mhrd, govt, endeavour recruitment">
+    <meta name="description" content="Official Website of Team Endeavour, Sliet Longowal">
+    <title>Registration | Endeavour</title>   
+    <link rel="icon" type="image/png" href="/images/10Artboard 1_1maroon Endeavour.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/css/style.css">
+    <link rel="stylesheet" href="/stylesheets/css/front.css">
+
+    <link rel="stylesheet" href="/stylesheets/css/login/inputform.css">
+    <link rel="stylesheet" href="/stylesheets/css/login/login.css">
+    <link rel="stylesheet" href="/stylesheets/css/login/outputform.css">
+    <link rel="stylesheet" href="/stylesheets/css/login/secondnav.css">
+    <link rel="stylesheet" href="/stylesheets/css/responsive.css">
+
+</head>
+
+<body>
+    <canvas class="background" style="visibility: hidden; width: 100%; height: 100%;" width="750"
+        height="1334"></canvas>
+    <nav>
+        <div class="container">
+            <div class="left"><a href="/"><img src="/images/mainlogo.png" alt=""></a></div>
+            <div class="navWebName">Endeavour</div>
+            <div class="tl" onclick="toggleMobileNav()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M0 0h24v24H0V0z" fill="none"></path>
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+            </div>
+            <div class="center">
+                <ul class="ul navUl">
+                    <li><a class="home navUlLi " href="/">Home</a></li>
+                    <li><a class="about navUlLi" href="/pages/about.html">About Us</a></li>
+                    <li><a class="domain navUlLi " href="/pages/domain.html">Domains</a></li>
+                    <li><a class="sponsers" href="/pages/sponsors.html">Sponsors</a></li>
+                    <li><a class="team navUlLi" href="/pages/teams.html">Team</a></li>
+                    <li><a class="login navUlLi active" href="/pages/login/loginas.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="right"><a href="/"><img src="/images/SLIET_in_Colours_of_ENDEAVOUR.png" alt=""></a></div>
+        </div>
+    </nav>
+
+    <div class="loading"
+        style="background: url(&quot;/images/loading/loading2.gif&quot;) center center / contain no-repeat; display: none;">
+    </div>
+
+    <div class="main">
+        <form name="google-sheet" id="registration_form" class="loginForm" method="post" enctype="multipart/form-data">
+            <div class="container loginContainer">
+                <div class=""><img src="/images/mainlogo.png" alt="Endeavour-Logo" class="brand-logo"
+                        style="height: 120px;"></div>
+                <div class="inputs"><label class="label">NAME</label><input class="inputr" type="text" name="Name"
+                        id="name" placeholder="Enter Your Name" required=""><label class="label">EMAIL</label><input
+                        class="inputr" type="email" name="Email" id="email" placeholder="example@test.com"
+                        required=""><label class="label">PASSWORD</label><input class="inputr" type="password"
+                        name="Password" id="password" placeholder="Min 6 charaters long"><label
+                        class="label">PHONE</label><input class="inputr" type="tel" name="Phone" id="phone"
+                        placeholder="+91 0000000000" required=""><label class="label">TRADE/REG NO.</label><input
+                        class="inputr" type="text" name="Trade_and_Reg" id="tradeAndRegNo" placeholder="CDE/2411000"
+                        required=""><label class="label">YEAR</label><input class="inputr" type="text" name="Year"
+                        id="year" placeholder="ICD 1st Year" required=""><label class="label">SEMESTER</label><input
+                        class="inputr" type="number" name="Semester" id="semester" placeholder="1st Semester"
+                        required=""><button type="submit" id="register" class="buttonr">Register Now</button><a
+                        href="/pages/login/login"><button type="button" class="buttonr">Login</button></a></div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+    <footer id="footer"></footer>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/footer.js"></script>
+    <script src="/scripts/login/protected.js" type="module"></script>
+</body>
+
+</html>
+
+</html>

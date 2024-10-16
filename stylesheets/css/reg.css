@@ -1,0 +1,186 @@
+﻿@font-face {
+    font-family: Smile and Wave;
+    src: url(../fonts/smile_and_wave/smileandwave.ttf);
+}
+
+@font-face {
+    font-family: DESIGNER;
+    src: url(../fonts/designer/DESIGNER.otf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(../fonts/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins/Poppins-Light.ttf);
+}
+
+* {
+    font-family: Montserrat;
+}
+body {
+
+}
+
+
+
+.container {
+    margin-top : 100px;
+    margin-bottom : 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content : space-evenly;
+}
+
+.content {
+    width: 45%;
+    background-color: rgb(177, 55, 7);
+    border-radius: 50px;
+    color: #fff;
+    font-family: sans-serif;
+    justify-content: center;
+}
+.left{
+    margin-bottom : 30px;
+}
+.logo {
+    width: 23vw;
+    height: 23vw;
+    
+    margin : auto;
+}
+.logo img{
+    height : 100%;
+    width : 100%;
+}
+.content .left{
+    width : 100%;
+}
+.content-dealing {
+    padding: 1em;
+    text-align: center;
+    margin: auto;
+    text-align: justify;
+}
+
+.content-dealing p{
+    
+}
+.main {
+    width: 45%;
+    text-align : center;
+    /* display: flex; */
+}
+
+::-webkit-input-placeholder {
+    font-size: 20px;
+}
+
+.title {
+    display: block;
+    font-family: sans-serif;
+    margin: 10px 0 5px;
+    text-align: center;
+}
+
+.pageTitle {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.secondaryTitle {
+    font-size: 20px;
+    color: rgb(177, 55, 7);
+    margin-bottom : 40px;
+}
+
+.formEntry {
+    display: block;
+    margin: 10px auto;
+    width: 300px;
+    height: 50px;
+    /*transition: all 0.5s ease 0s;*/
+    background-color: #ebebeb;
+    color: rgb(9, 9, 9);
+    border: 2px solid rgb(177, 55, 7);
+    border-radius: 10px;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+
+    .formEntry:hover {
+        transition: ease 1s;
+        width: 300px;
+    }
+
+    .formEntry placeholder {
+        font-size: 20px;
+    }
+
+::placeholder {
+    color: grey;
+    font-size : 16px;
+    
+}
+.submit {
+    color: white;
+    background-color: rgb(177, 55, 7);
+    font-size: 20px;
+    padding: .5em;
+    border: 5px solid #ffffff;
+    border-radius: 25px;
+    width: 300px;
+    margin: 0 auto;
+    
+}
+
+    .submit:hover {
+        /* transform: translateY(-1em); */
+        box-shadow: 0 6px 12px 0 rgba(0,0,0,0.15), 0 6px 20px 0 rgba(0,0,0,0.14);
+        transition: all 0.5s ease 0s;
+    }
+
+    .pop_msg{
+        height : 100px;
+        width : 100%;
+        background-color : maroon;
+        text-align : center;
+        position : fixed;
+        bottom : 40%;
+        display : block;
+        padding-top : 20px;
+        color : white;
+    }
+    .pop_msg button{
+        margin-top : 20px; 
+        height : 40px;
+        width  : 100px;
+        background-color : white;
+        border-radius  : 10px;
+    }
+
+@media (max-width: 850px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding : 5%;
+        margin-top : 20px;
+    }
+
+    .main, .content {
+        width: 100%;
+        margin-top : 40px;
+    }
+
+    .logo {
+        width: 43vw;
+        height: 43vw;
+        margin: auto;
+    }
+}

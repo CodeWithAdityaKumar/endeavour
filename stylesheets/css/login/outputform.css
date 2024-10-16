@@ -1,0 +1,245 @@
+.body {
+    /* background-image: linear-gradient(to bottom right , rgb(0, 0, 0) ,#95DBE5FF); */
+    background-color: #95DBE5FF;
+    color: rgb(1, 48, 24);
+    font-size: 2rem;
+    font-weight: bold;
+    padding: auto;
+    /* display: flex; */
+    background-repeat: no-repeat;
+  }
+
+
+  .adminnav{
+    width: 100%;
+    color: rgb(255, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: rgb(0, 0, 0);
+    font-size: 2rem;
+    margin: auto;
+    text-align: center;
+    position: fixed+sticky;
+    /* margin-bottom: 10vh; */
+    font-style: italic;
+    font-family: sans-serif;
+    padding: 10px 0px;
+
+}
+.adminnavpart{
+    width: 20vw;
+
+}
+
+@media only screen and (max-width:912px) {
+
+  .adminnav{
+      font-size: 1.8rem;
+  }
+
+}
+
+@media only screen and (max-width:820px) {
+
+  .adminnav{
+      font-size: 1.5rem;
+  }
+
+}
+
+@media only screen and (max-width:760px){
+  .adminnav{
+      /* color: rgb(255, 0, 0); */
+      display: flex;
+      /* flex-direction: column; */
+      background-color: rgb(0, 0, 0);
+      font-size: .7rem;
+      /* margin: auto; */
+      /* text-align: center; */
+      /* position: fixed+sticky; */
+      /* margin-bottom: 10vh; */
+      /* font-style: italic;
+      font-family: sans-serif; */
+  
+  }
+}
+
+
+@media only screen and (max-width:280px) {
+
+  .adminnav{
+      font-size: .5rem;
+  }
+
+}
+
+
+
+
+  .divclass {
+    background-color: rgb(121, 3, 3);
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    /* margin: 5%; */
+    width: 30vw;
+    height: 20vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    padding: 2% 0 0 0%;
+    padding: 2% 0 0 0%;
+    margin-left:10%;
+    margin-top: 2%;
+    font-size: 2rem;
+ 
+  }
+  #content{
+    display: inline-block;
+  }
+ 
+ 
+ 
+  .welcomemember{
+    font-size: 3rem;
+    color: rgb(135, 9, 9);
+    font-weight: bolder;
+    text-align: center;
+  }
+ 
+  .td2class{
+    color: rgb(255, 255, 255);
+    display: block;
+    font-size: 2rem;
+    font-weight: bolder;
+    font-style: italic;
+    text-transform: capitalize;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+    padding-left: 10px;
+  }
+
+  .td4class{
+    font-size: 1rem;
+    padding-left: 10px;
+    /* overflow-y: scroll; */
+  }
+
+
+  .blog{
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  #myDiv{
+    margin-bottom: 20px;
+  }
+
+
+
+  @media only screen and (max-width: 780px) {
+    .divclass {
+    /* margin: 5%; */
+    width: 80vw;
+    height: 20vh;
+    /* overflow-y: scroll; */
+
+   
+    /* padding: 2% 0 0 5%; */
+    padding: 2% 0 0 0%;
+    margin-left:10%;
+    margin-top: 2%;
+    /* font-size: 1rem; */
+    font-size: 2rem;
+
+    /* text-transform: capitalize; */
+ 
+  }
+  #content{
+    display:block;
+
+  }
+ 
+ 
+ 
+  .welcomemember{
+    font-size: 2rem;
+    color: rgb(135, 9, 9);
+    font-weight: bolder;
+    text-align: center;
+  }
+ 
+  .td2class{
+    color: rgb(255, 255, 255);
+    display: block;
+    /* font-size: 1rem; */
+    font-size: 2rem;
+    font-weight: bolder;
+    font-style: italic;
+    padding-top: 5% ;
+    
+  }
+  .td4{
+    display: block;
+    padding-top: 5%;
+  font-size: 1rem;
+  margin-top: 50px;
+  }
+  .blog{
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+  @media only screen and (max-width: 399px) {
+    .divclass {
+  
+    /* margin: 5%; */
+    width: 80vw;
+    height: 20vh;
+    /* overflow-y: scroll; */
+   
+    /* padding: 2% 0 0 5%; */
+    padding: 2% 0 0 0%;
+    margin-left:10%;
+    margin-top: 2%;
+    font-size: 1rem;
+ 
+  }
+  #content{
+    display:block;
+
+  }
+ 
+ 
+ 
+  .welcomemember{
+    font-size: 2rem;
+    color: rgb(135, 9, 9);
+    font-weight: bolder;
+    text-align: center;
+  }
+ 
+  .td2class{
+    color: rgb(255, 255, 255);
+    display: block;
+    font-size: 2rem;
+    font-weight: bolder;
+    font-style: italic;
+    padding-top: 5% ;
+  }
+  .td4{
+    display: block;
+    padding-top: 5%;
+  font-size: 1rem;
+  margin-top: 50px;
+  }
+  .blog{
+    text-align: center;
+    font-size: 1.7rem;
+    
+  }
+}
+    
+  

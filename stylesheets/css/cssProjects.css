@@ -1,0 +1,484 @@
+@font-face {
+    font-family: Smile and Wave;
+
+    src: url(/fonts/smile_and_wave/smileandwave.ttf);
+}
+@font-face {
+    font-family: DESIGNER;
+    src: url(/fonts/designer/DESIGNER.otf);
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Bold.ttf);
+}
+@font-face {
+    font-family: poppins;
+    src: url(/fonts/Poppins/Poppins-Light.ttf);
+}
+:root{
+    color:#fff;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* CONTENT NAVIGATION */
+section.contentNavigation{
+    width: 100%;
+    height: 64px; /* Change */
+    background: #fff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+}
+.contentNavigation .navigationArray{
+    width: 80%;
+    height: 50%;
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000;
+}
+.navigationArray a{
+    text-decoration: none;
+    color: #000;
+}
+.navigationArray .activePage{
+    box-sizing: border-box;
+    border-bottom: 5px solid #A00000;
+}
+.activePage a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+/* RACE DRONE */
+section.raceDrone{
+    width: 100%;
+    height: 726px; /*Change*/
+    background-color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.raceDrone .raceDroneText, .raceDroneImage{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    /* align-items: center; */
+    padding-top: 40px;
+    
+}
+.raceDroneImage{
+    background:url(/images/race_drone.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: contain;
+}
+.raceDroneText .raceDroneTextContainer{
+    height: 45%;
+    width: 85%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+}
+.raceDroneTextContainer .raceTitle{
+    width: 100%;
+    height: 20%;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 18px;
+    /* identical to box height, or 50% */
+
+
+    color: #CD0000;
+}
+.raceDroneTextContainer .raceDescription{
+    width: 100%;
+    height: 80%;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 26px;
+    /* or 189% */
+
+
+    color: #0E0D0D;
+}
+
+/* DELIVERY DRONE */
+section.deliveryDrone{
+    width: 100%;
+    height: 484px;
+    background-color: #000000;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.deliveryDrone .deliveryDroneText, .deliveryDroneImage{
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+.deliveryDroneImage{
+    background: url(/images/delivery-drone.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: contain;
+}
+
+.deliveryDroneText .deliveryDroneTextContainer{
+    height: 95%;
+    width: 85%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-direction: column;
+}
+.deliveryDroneTextContainer .deliveryTitle{
+    width: 100%;
+    height: 10%;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 18px;
+    text-align: right;
+    /* identical to box height, or 50% */
+
+    color: #CD0000;
+}
+.deliveryDroneTextContainer .deliveryDescription{
+    width: 100%;
+    height: 80%;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: right;
+    /* or 189% */
+
+    color: #FFFCFC;
+}
+/* DELIVERY DRONE */
+section.rcPlane{
+    width: 100%;
+    height: 484px;
+    background-color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.rcPlane .rcPlaneText, .rcPlaneImage{
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+.rcPlaneImage{
+    background: url(/images/rc_plane.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: contain;
+}
+
+.rcPlaneText .rcPlaneTextContainer{
+    height: 45%;
+    width: 85%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-direction: column;
+}
+.rcPlaneTextContainer .rcPlaneTitle{
+    width: 100%;
+    height: 20%;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 18px;
+    text-align: left;
+    /* identical to box height, or 50% */
+
+    color: #CD0000;
+}
+.rcPlaneTextContainer .rcPlaneDescription{
+    width: 100%;
+    height: 80%;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: left;
+    /* or 189% */
+
+    color: #0E0D0D;
+}
+
+
+
+
+
+/*768px < Viewport < 1024px,
+3/4 of main viewport */
+@media only screen and (max-width:1024px){
+
+    /* CONTENT NAVIGATION */
+    .contentNavigation{
+        height: 48px;
+    }
+    .contentNavigation .navigationArray{
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    /* CONTENT */
+    section.raceDrone{
+        height: 543px;
+    }
+    .raceDroneTextContainer .raceTitle{
+        font-size: 27px;
+        line-height: 30px;
+        margin: 30px 0px;
+    }
+    .raceDroneTextContainer .raceDescription{
+        font-size: 10.5px;
+        line-height: 19.5px;
+    }
+
+    /* CONTENT DELIVERY DRONE*/
+    section.deliveryDrone{
+        height: 363px;
+    }
+    .deliveryDroneTextContainer .deliveryTitle{
+        font-size: 27px;
+        line-height: 13.5px;
+        padding: 30px 0px;
+    }
+    .deliveryDroneTextContainer .deliveryDescription{
+        font-size: 10.5px;
+        line-height: 19.5px;
+    }
+
+    /* CONTENT RC PLANES */
+    section.rcPlane{
+        height: 543px;
+    }
+    .rcPlaneTextContainer .rcPlaneTitle{
+        font-size: 27px;
+        line-height: 13.5px;
+    }
+    .rcPlaneTextContainer .rcPlaneDescription{
+        font-size: 10.5px;
+        line-height: 19.5px;
+    }
+
+    
+    
+    
+}
+
+
+
+@media only screen and (max-width:768px){
+
+    /* CONTENT NAVIGATION */
+    .contentNavigation{
+        height: 32px;
+    }
+    .contentNavigation .navigationArray{
+        font-size: 12px;
+        line-height: 28.5px;
+    }
+
+    /* CONTENT */
+    section.raceDrone{
+        height: 363px;
+    }
+    .raceDroneTextContainer .raceTitle{
+        font-size: 18px;
+        line-height: 9px;
+    }
+    .raceDroneTextContainer .raceDescription{
+        font-size: 7px;
+        line-height: 13px;
+    }
+
+    /* CONTENT DELIVERY DRONE*/
+    section.deliveryDrone{
+        height: 242px;
+    }
+    .deliveryDroneTextContainer .deliveryTitle{
+        font-size: 18px;
+        line-height: 9px;
+    }
+    .deliveryDroneTextContainer .deliveryDescription{
+        font-size: 7px;
+        line-height: 13px;
+    }
+
+    /* CONTENT RC PLANES */
+    section.rcPlane{
+        height: 363px;
+    }
+    .rcPlaneTextContainer .rcPlaneTitle{
+        font-size: 18px;
+        line-height: 9px;
+    }
+    .rcPlaneTextContainer .rcPlaneDescription{
+        font-size: 7px;
+        line-height: 13px;
+    }
+
+}
+
+/* Viewport less than 600px,
+1/4 of main viewport
+392px Changed to 600px*/ 
+@media only screen and (max-width:600px){
+
+    /* CONTENT NAVIGATION */
+    .contentNavigation{
+        height: 16px;
+    }
+    .contentNavigation .navigationArray{
+        font-size: 8px;
+        line-height: 14.25px;
+    }
+
+    /* CONTENT */
+    section.raceDrone{
+        height: 500px;
+        
+    }
+    .raceDroneTextContainer .raceTitle{
+        font-size: 15px;
+        line-height: 15px;
+    }
+    .raceDroneTextContainer .raceDescription{
+        font-size: 10px;
+    line-height: 15px;
+    }
+
+    /* CONTENT DELIVERY DRONE*/
+    section.deliveryDrone{
+        height: 380px;
+    }
+    .deliveryDroneTextContainer .deliveryTitle{
+        font-size: 15px;
+        line-height: 4.5px;
+    }
+    .deliveryDroneTextContainer .deliveryDescription{
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    /* CONTENT RC PLANES */
+    section.rcPlane{
+        height: 430px;
+    margin-bottom: 40px;
+
+    }
+    .rcPlaneTextContainer .rcPlaneTitle{
+        font-size: 15px;
+        line-height: 15px;
+    }
+    .rcPlaneTextContainer .rcPlaneDescription{
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+
+}
+
+@media only screen and (max-width:280px){
+
+    section.raceDrone{
+        height: 500px;
+    }
+
+    section.rcPlane{
+        height: 550px;
+    }
+
+    section.deliveryDrone{
+        height: 660px;
+    }
+
+    .deliveryDroneTextContainer .deliveryTitle{
+        line-height: 15px;
+    }
+
+    .raceDroneTextContainer .raceTitle{
+        line-height: 15px;
+    }
+
+    .intro .endeavourText{
+        font-size: 20px;
+    }
+
+    .intro .endeavourTagline{
+        font-size: 15px;
+    }
+
+    .rcPlaneText .rcPlaneTextContainer{
+        height: 95%;
+    }
+
+    .rcPlaneTextContainer .rcPlaneTitle{
+        height: 10%;
+    }
+
+    .rcPlaneTextContainer .rcPlaneTitle{
+        line-height: 15px;
+    }
+
+
+    
+}

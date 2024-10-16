@@ -1,0 +1,607 @@
+@media only screen and (max-width:1156px) {
+    nav .container .center ul li{
+        padding: 25px;
+    }
+
+    nav .container .center ul li a{
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width:1096px) {
+    nav .container .center ul li{
+        padding: 20px;
+    }
+
+    nav .container .center ul li a{
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width:1035px) {
+    nav .container .center ul li{
+        padding: 15px;
+    }
+
+    nav .container .center ul li a{
+        font-size: 19px;
+    }
+}
+
+
+@media only screen and (max-width:1024px) {
+    nav .container .center ul li{
+        padding: 15px;
+    }
+
+    nav .container .center ul li a{
+        font-size: 16px;
+    }
+
+    .Projects .content .ExploreBtn{
+        width: 90%;
+    }
+    .ResearchProjects .content .ExploreBtn{
+        width: 90%;
+    }
+
+    .ResearchProjects{
+        height: 400px;
+    }
+
+
+
+    footer .connectionFooter .connectionFooterOne .logos img {
+        height: 65%;
+    }
+
+
+    footer .connectionFooter .connectionFooterOne .webName{
+        font-size: 20px;
+    }
+
+    footer .connectionFooter .connectionFooterOne .webSlogan {
+        font-size: 15px;
+    }
+
+
+}
+
+
+
+
+@media only screen and (max-width:800px) {
+    nav .container .center ul li{
+        padding: 10px;
+    }
+
+    nav .container .center ul li a{
+        font-size: 15px;
+    }
+
+    .hero .logoText{
+        font-size: 2rem;
+    }
+
+    
+    .hero .sloganText{
+        font-size: .5rem;
+        /* letter-spacing: 4px; */
+    }
+}
+
+
+
+@media only screen and (max-width:600px) {
+
+
+
+
+    /* navigation bar  */
+
+    nav{
+        height: 80px;
+    }
+
+    nav .container .navWebName{
+        display: block;
+    }
+    nav .container .tl{
+        display: block;
+    }
+
+    nav .container .left{
+        display: none;
+        width: 10vw;
+        height: 10vw;
+        border-radius: 50%;
+    }
+
+    nav .container .center .ul {
+        position: absolute;
+        left: 0;
+        top: 0px; /* Push the menu below the navbar */
+        width: 100%;
+        height: calc(100vh - 80px); /* Full height minus the navbar */
+        background-color: black;
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto; /* Scroll if content exceeds screen */
+    }
+
+    nav .container .center ul li{
+        padding: 40px;
+    }
+
+    nav .container .center ul li a {
+        color: white; /* Set the links to white for better contrast */
+        font-size: 15px;
+    }
+
+
+    nav .container .right{
+        display: none;
+    }
+
+
+
+    /* hero section  */
+
+    .hero .logoText{
+        font-size: 2rem;
+    }
+
+    
+    .hero .sloganText{
+        font-size: .4rem;
+        /* letter-spacing: 4px; */
+    }
+
+
+
+.readBlog{
+    padding: 20px 0;
+    }
+
+.readBlog .content{
+    font-size: 15px;
+    padding: 20px;
+
+    }
+
+.readBlog .content br{
+        display: none;
+    }
+
+.readBlog .readBtn{
+        width: 90%;
+        height: 60%;
+        margin-right: 20px;
+    }
+
+
+    .About{
+        height:250px; 
+    }
+
+    .About .content{
+        width: 100%;  
+    }
+    
+    .About .content .heading{
+        width: 90%;   
+    }
+    
+    .About .content .AboutContent{
+        width: 90%;
+        padding: 8px 0;
+    }
+    
+    .About .content .ExploreBtn{
+        width: 90%;
+        
+    }
+
+
+
+
+    .Projects{
+        background: linear-gradient(89.74deg, #020402 32.84%, rgba(0, 0, 0, 0) 66.81%), url(/images/TunerX.png);
+    background-color: rgb(84, 84, 84);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        height:250px;
+
+        padding-left: 20px;
+    }
+    
+    .Projects .content{
+        width: 100%;
+    }
+    
+    .Projects .content .heading{
+        width: 90%;
+        
+    }
+    
+    .Projects .content .ProjectsContent{
+        width: 90%;
+        padding: 8px 0;
+    }
+    
+    .Projects .content .ExploreBtn{
+        width: 100%;
+    
+    
+    }
+
+    .Projects .bgdron{
+        display: none;
+    }
+
+
+
+    
+    .workDomain .headingSubheading .heading{
+        font-size: 25px;
+        line-height: 20px;
+    }
+    
+    .workDomain .headingSubheading .subHeading{
+        font-size: 10px;
+        line-height: 10px;
+    }
+    
+    .workDomain .domainCards{
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    
+    .workDomain .domainCards .card{
+        height: 100%;
+        width: 100%;
+        margin: 5px 0px;
+        
+    }
+    
+    
+    .workDomain .domainCards .card .content{
+        height: 100%;
+    }
+    
+    
+    .workDomain .domainCards .card .content .name{
+        font-size: 30px;
+        line-height: 0px;
+    }
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .ResearchProjects{
+        background: linear-gradient(89.74deg, #020402 32.84%, rgba(0, 0, 0, 0) 66.81%), url(/images/wheelChair.png);
+    background-color: rgb(84, 84, 84);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+        height:300px;
+
+        padding-left: 20px;
+    }
+    
+    .ResearchProjects .content{
+        width: 100%;
+        padding-left: 0;
+    }
+    
+    .ResearchProjects .content .heading{
+        width: 100%;
+        
+        
+    }
+    
+    .ResearchProjects .content .ResearchProjectsContent{
+        width: 90%;
+        padding: 15px 0;
+    }
+    
+    .ResearchProjects .content .ExploreBtn{
+        width: 100%;
+    }
+    
+    .ResearchProjects .bgdron{
+        display: none;
+    }
+    
+
+
+
+
+
+
+
+
+    .sponsersReference{
+        height: 250px;
+    }
+    
+    .sponsersReference .sponsers{
+        width: 30%;
+        height: 30%;
+    }
+    
+    
+    /* footer  */
+
+
+
+    footer{
+        height: 316px;
+    }
+
+    
+    footer .connectionFooter .connectionFooterOne{
+        width: 90%;
+    }
+    
+    footer .connectionFooter .connectionFooterOne .webName{
+        font-size: 15px;
+        line-height: 20px;
+    }
+    
+    footer .connectionFooter .connectionFooterOne .webSlogan{
+        font-size: 10px;
+        line-height: 5px;
+    }
+
+
+    
+    
+    footer .connectionFooter .connectionFooterOne .logos{
+    height: 50%;
+    }
+    
+    
+    
+     table.menuFooterContainer tr th, td {
+            font-size: 15px;
+            line-height: 25px;
+        }
+    
+    tr td, th {
+        padding: 0px;
+    }
+    
+    .contactContainer {
+        font-size: 10px;
+    }
+
+    .loginsubmit {
+
+       width: 90%;
+
+    }
+  
+}
+
+
+
+@media only screen and (max-width: 540px){
+
+    footer .connectionFooter .connectionFooterOne .logos{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+footer .connectionFooter .connectionFooterOne .logos img {
+    height: 100%;
+}
+
+}
+
+
+@media only screen and (max-width: 360px){
+footer .connectionFooter .connectionFooterOne .webName {
+    font-size: 14px;
+    line-height: 20px;
+}
+}
+
+
+@media only screen and (max-width:375px) {
+    .ResearchProjects .content .heading{
+        font-size: 33px;
+    }
+
+    .ResearchProjects .content .ResearchProjectsContent{
+        font-size: 12px;
+    }
+}
+
+
+@media only screen and (max-width:412px) {
+    .hero {
+        height: 90vh;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:280px) {
+    .hero .logoText{
+        font-size: 1.2rem;
+    }
+
+    
+    .hero .sloganText{
+        font-size: .3rem;
+        letter-spacing: 1vw;
+        line-height: 12px;
+    }
+
+    .readBlog {
+        height: 165px;
+    }
+
+    .readBlog .content{
+        font-size: 10px;
+    }
+
+    .readBlog .readBtn {
+        width: 100%;
+        height: 40%;
+    }
+
+    .readBlog .readBtn a {
+        font-size: 12px;
+    }
+
+    .About{
+        height: 245px;
+    }
+
+    .About .content .AboutContent {
+        font-size: 10px;
+    }
+
+    .About .content .ExploreBtn a{
+        width: 45%;
+        padding: 10px;
+    }
+
+    .Projects{
+        height: 245px;
+    }
+
+    .Projects .content .ProjectsContent {
+        font-size: 10px;
+    }
+
+    .Projects .content .ExploreBtn a{
+        width: 45%;
+        padding: 10px;
+    }
+
+
+    .ResearchProjects{
+        height: 245px;
+    }
+
+    .ResearchProjects .content .heading{
+        font-size: 24px;
+    }
+
+    .ResearchProjects .content .ResearchProjectsContent {
+        font-size: 10px;
+    }
+
+    .ResearchProjects .content .ExploreBtn a{
+        width: 45%;
+        padding: 10px;
+    }
+
+
+
+    /* footer  */
+
+    footer .connectionFooter .connectionFooterOne .logos img{
+        height: 95%;
+    }
+
+    footer .connectionFooter .connectionFooterOne .webName{
+        font-size: 10px;
+    }
+
+    footer .connectionFooter .connectionFooterOne .webSlogan{
+        font-size: 8px;
+    }
+
+    footer .connectionFooter .connectionFooterOne .social{
+        width: 80%;
+    }
+
+    table.menuFooterContainer tr th, td{
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    @media only screen and (max-width:280px){
+        .contactContainer{
+            line-height: 15px;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    nav {
+        height: 80px;
+    }
+
+    nav .container .left,
+    nav .container .right {
+        display: none;
+    }
+
+    nav .container .navWebName {
+        display: block;
+    }
+
+    nav .container .tl {
+        display: block;
+    }
+
+    nav .container .center {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: rgb(0, 0, 0);
+        border-top: 1px solid black;
+        display: none;
+        overflow-y: auto;
+    }
+
+    nav .container .center ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        height: 100%;
+    }
+
+    nav .container .center ul li {
+        padding: 40px 0;
+    }
+
+    nav .container .center ul li a {
+        color: white;
+        font-size: 18px;
+    }
+
+    nav .container .center.show {
+        display: block;
+    }
+}

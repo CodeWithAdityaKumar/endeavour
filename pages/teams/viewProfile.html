@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | Endeavour</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+
+    <div id="content" class="hidden">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="bg-blue-600 h-48 flex items-center justify-center">
+                    <img id="profileImage" src="" alt="Profile Picture" class="h-32 w-32 rounded-full border-4 border-white shadow-lg">
+                </div>
+                <div class="p-6">
+                    <h1 id="userName" class="text-3xl font-bold text-center mb-4"></h1>
+                    <p id="userRole" class="text-gray-600 text-center mb-6"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h2 class="text-xl font-semibold mb-2">Personal Information</h2>
+                            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+                            <p><strong>Reg No:</strong> <span id="userRegNo"></span></p>
+                            <p><strong>Gender:</strong> <span id="userGender"></span></p>
+                            <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold mb-2">Academic Information</h2>
+                            <p><strong>Programme:</strong> <span id="userProgramme"></span></p>
+                            <p><strong>Year:</strong> <span id="userYear"></span></p>
+                            <p><strong>Team Role:</strong> <span id="userTeamRole"></span></p>
+                            <p><strong>Trade:</strong> <span id="userTrade"></span></p>
+                            <p><strong>Post:</strong> <span id="userPost"></span></p>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h2 class="text-xl font-semibold mb-2">Social Media</h2>
+                        <div class="flex space-x-4">
+                            <a id="userLinkedin" href="#" target="_blank" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                            <a id="userInstagram" href="#" target="_blank" class="text-pink-600 hover:text-pink-800">
+                                <i class="fab fa-instagram fa-2x"></i>
+                            </a>
+                            <a id="userEmailIcon" href="#" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-envelope fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+        import { firebaseConfig } from '/configs/firebase.js';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        function showLoadingSpinner() {
+            document.getElementById('loadingSpinner').classList.remove('hidden');
+        }
+
+        function hideLoadingSpinner() {
+            document.getElementById('loadingSpinner').classList.add('hidden');
+        }
+
+        function updateProfile(userData) {
+            document.getElementById('profileImage').src = userData.profileImageUrl || 'https://via.placeholder.com/150';
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userRole').textContent = userData.role;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('userRegNo').textContent = userData.regNo;
+            document.getElementById('userGender').textContent = userData.gender;
+            document.getElementById('userPhone').textContent = userData.phoneNumber;
+            document.getElementById('userProgramme').textContent = userData.programme;
+            document.getElementById('userYear').textContent = userData.year;
+            document.getElementById('userTeamRole').textContent = userData.teamRole;
+            document.getElementById('userTrade').textContent = userData.trade;
+            document.getElementById('userPost').textContent = userData.post || '';
+            
+            const linkedinLink = document.getElementById('userLinkedin');
+            if (userData.linkedin) {
+                linkedinLink.href = userData.linkedin;
+                linkedinLink.style.display = 'inline-block';
+            } else {
+                linkedinLink.style.display = 'none';
+            }
+
+            const emailLink = document.getElementById('userEmailIcon');
+            if (userData.email) {
+                emailLink.href = `mailto:${userData.email}?subject=Enquiry about team Endeavour`;
+                emailLink.style.display = 'inline-block';
+            } else {
+                emailLink.style.display = 'none';
+            }
+
+            const instagramLink = document.getElementById('userInstagram');
+            if (userData.instagram) {
+                instagramLink.href = userData.instagram;
+                instagramLink.style.display = 'inline-block';
+            } else {
+                instagramLink.style.display = 'none';
+            }
+        }
+
+        async function fetchUserProfile() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const profileId = urlParams.get('profileId');
+
+            if (!profileId) {
+                console.error('No profile ID provided');
+                return;
+            }
+
+            showLoadingSpinner();
+            try {
+                const userRef = ref(db, `users/${profileId}`);
+                const snapshot = await get(userRef);
+                
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    updateProfile(userData);
+                    document.getElementById('content').classList.remove('hidden');
+                } else {
+                    console.log("No user data found!");
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            } finally {
+                hideLoadingSpinner();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchUserProfile);
+    </script>
+</body>
+</html>

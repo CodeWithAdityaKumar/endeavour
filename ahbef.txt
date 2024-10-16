@@ -1,0 +1,18 @@
+profile details:
+    1. Name
+    2. Email
+    3. reg no.
+    4. photo
+    5. linkedin
+    6. instagram
+    7. trade
+    8. gender
+    9. phone number
+    10. year
+    11. programme -> ICD, B-tech, B.Sc
+    12. role -> user, admin,  moderator
+    13. team role -> Faculty, Alumni, Committee, Members
+    14. _id
+
+year-> creating new user
+programme-> creating new user

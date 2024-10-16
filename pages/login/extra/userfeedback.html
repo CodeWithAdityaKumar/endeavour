@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ContactForm</title>
+       
+        <style>
+             /* .fwelcome{
+                margin-left:32vw;
+                font-weight: bold;
+                font-size: 2.5rem;
+                color:black;
+            } */
+        </style>
+            <link rel="stylesheet" href="../css/login/inputform.css">
+          <link rel="stylesheet" href="../css/style.css">
+          <link rel="stylesheet" href="../css/front.css">
+          <link rel="stylesheet" href="../css/login/secondnav.css">
+    </head>
+
+    <body>
+        <!-- TOP NAVIGATION -->
+    <nav class="topNav" id="navSticky">
+        <div class="emptySpace25">
+            <div class="endeavourLogo"><a href="#"><img src="../images/mainlogo.png" alt="Endeavour-Logo" srcset=""></a></div>
+        </div>
+        <ul class="navArray">
+            <li class="navComponent flex-center"><a href="../index.html#home" class="flex-center">HOME</a></li>
+            <li class="navComponent flex-center"><a href="#" class="flex-center  activeTopNav">ABOUT US</a></li>
+            <li class="navComponent flex-center"><a href="../projects.html#UAVs" class="flex-center">DOMAINS</a></li>
+            <li class="navComponent flex-center"><a href="../index.html#sponsors" class="flex-center">SPONSORS</a></li>
+            <li class="navComponent flex-center"><a href="../teams.html#alumni" class="flex-center">TEAM</a></li>
+            <li class="navComponent flex-center"><a href="../login/login.html" class="flex-center">LOGIN</a></li>
+        </ul>
+        <div class="emptySpace25">
+            <div class="endeavourLogo"><a href="http://sliet.ac.in/" target="_blank" rel="noopener noreferrer"><img src="../images/SLIET_in_Colours_of_ENDEAVOUR.png" alt="Endeavour-Logo" srcset=""></a></div>
+        </div>
+    </nav>
+    <div class="adminnav">
+        <div class="adminnavpart"><a href="./userwisdom.html" >EXPERIENCE</a></div>
+        <div class="adminnavpart"><a href="./blogshow.html" >ARTICLE/BLOG</a></div>
+        <div class="adminnavpart"><a href="./userfeedback.html" >FEEDBACK</a></div>
+      </div>
+        <div class="awelcome">
+            <!-- WELCOME <span class="admin">ADMIN </span> -->
+  Valueable Feedback
+        </div>
+        <div class="amain">
+            <div class="acontent">
+                <form action="#" name="myform">
+                    <div class="apageTitle ">ENDEAVOUR</div>
+                    <div class="asecondaryTitle ">
+                        STRIVE TO CREATE DIFFERENCE</div>
+                    <input type="text" name="fname" class="aname aformEntry" id="name" placeholder="Name" />
+                    <input type="text" name="femail" class="aemail aformEntry" id="email" placeholder="Email" />
+                    <input type="text" name="fbsname" class="aemail aformEntry" id="wow" placeholder="Feedback" maxlength="50"/> 
+                    <input class="asubmit" type="submit" id='submit' />
+                </form>
+            </div>
+
+        </div>
+    </body>
+  
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"
+
+        const firebaseConfig = {
+    apiKey: "AIzaSyAv91RZ-KPBeYYwGMQJh0oZf1srFggh1II",
+    authDomain: "endeavourfeedback.firebaseapp.com",
+    databaseURL: "https://endeavourfeedback-default-rtdb.firebaseio.com",
+    projectId: "endeavourfeedback",
+    storageBucket: "endeavourfeedback.appspot.com",
+    messagingSenderId: "378238217404",
+    appId: "1:378238217404:web:9f2ac6716b03c97541b4b9",
+    measurementId: "G-KPFN7YFV4N"
+  };
+        //INTIALISE DATABASE
+        initializeApp(firebaseConfig);
+        const root = getDatabase();
+        let id ;
+        //WRITE OR TAKE VALUE IN DATABASE
+        function writeUserData(n,e,w) {
+            // set(ref(root,'user/' + userId),{
+            set(ref(root, 'users/' + id), {
+                name: n,
+                email: e,
+                wow: w
+
+            })
+                .then(() => {
+                    // Data saved successfully!
+                    // alert("done")
+                      alert("DONE !  YOUR RESPONSE HAS BEEN SUBMITTED");
+                    // window.location.href = 'wisdom.html';
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alert("error ")
+                });
+        }
+
+        //TO SAVE THE DATA AFTER CLICKING ON SIGN UP BUTTON 
+        submit.addEventListener('click', (e) => {
+            // e.preventdefault();
+            e.preventDefault()
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var wow = document.getElementById('wow').value;
+            id=`${name}`;
+            writeUserData(name, email,wow);
+        })
+    </script>
+
+    </html>
+
+</html>
+</body>
+</body>
+
+</html>

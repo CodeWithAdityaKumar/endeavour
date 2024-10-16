@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Endeavour</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+
+    <div id="content" class="container mx-auto px-4 py-8">
+        <!-- User Profile Picture -->
+        <div class="flex justify-center mb-8">
+            <img id="userProfilePic" src="" alt="User Profile" class="w-24 h-24 rounded-full border-4 border-blue-500 object-cover">
+        </div>
+
+        <h1 class="text-3xl font-bold mb-8">Projects</h1>
+
+        <!-- Search and Filter -->
+        <div class="mb-8 flex flex-wrap items-center space-x-4">
+            <input type="text" id="searchInput" placeholder="Search projects..." class="p-2 border rounded">
+            <select id="statusFilter" class="p-2 border rounded">
+                <option value="all">All Statuses</option>
+                <option value="ongoing">Ongoing</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+
+        <!-- Add Project Button -->
+        <button id="addProjectBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-8">
+            Add New Project
+        </button>
+
+        <!-- Project Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Ongoing Projects -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Ongoing Projects</h2>
+                <div id="ongoingProjects" class="space-y-4"></div>
+            </div>
+
+            <!-- Upcoming Projects -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Upcoming Projects</h2>
+                <div id="upcomingProjects" class="space-y-4"></div>
+            </div>
+
+            <!-- Completed Projects -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Completed Projects</h2>
+                <div id="completedProjects" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Project Modal -->
+    <div id="projectModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <h3 id="modalTitle" class="text-lg font-semibold mb-4">Add New Project</h3>
+            <form id="projectForm">
+                <input type="hidden" id="projectId" name="projectId">
+                <div class="mb-4">
+                    <label for="projectName" class="block text-sm font-medium text-gray-700">Project Name</label>
+                    <input type="text" id="projectName" name="projectName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="projectDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="projectDescription" name="projectDescription" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="projectProgress" class="block text-sm font-medium text-gray-700">Progress</label>
+                    <input type="range" id="projectProgress" name="projectProgress" min="0" max="100" class="mt-1 block w-full">
+                    <span id="progressValue" class="text-sm text-gray-500">0%</span>
+                </div>
+                <div class="mb-4">
+                    <label for="projectStatus" class="block text-sm font-medium text-gray-700">Status</label>
+                    <select id="projectStatus" name="projectStatus" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        <option value="ongoing">Ongoing</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" onclick="closeProjectModal()" class="mr-2 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">Save Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from '/configs/firebase.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { ref, get, update, remove } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+
+        let currentUser = null;
+        let userProjects = {};
+
+        function showLoadingSpinner() {
+            document.getElementById('loadingSpinner').classList.remove('hidden');
+        }
+
+        function hideLoadingSpinner() {
+            document.getElementById('loadingSpinner').classList.add('hidden');
+        }
+
+        function openProjectModal(project = null) {
+            const modal = document.getElementById('projectModal');
+            const form = document.getElementById('projectForm');
+            const title = document.getElementById('modalTitle');
+            const progressInput = form.elements['projectProgress'];
+            const statusSelect = form.elements['projectStatus'];
+
+            if (project) {
+                title.textContent = 'Edit Project';
+                form.elements['projectId'].value = project.id;
+                form.elements['projectName'].value = project.name;
+                form.elements['projectDescription'].value = project.description.replace(/<br\/>/g, '\n').replace(/&emsp;/g, '\t');
+                progressInput.value = project.progress;
+                statusSelect.value = project.status;
+                document.getElementById('progressValue').textContent = `${project.progress}%`;
+            } else {
+                title.textContent = 'Add New Project';
+                form.reset();
+                form.elements['projectId'].value = '';
+                document.getElementById('progressValue').textContent = '0%';
+            }
+
+            progressInput.addEventListener('input', handleProgressChange);
+            statusSelect.addEventListener('change', handleStatusChange);
+
+            modal.classList.remove('hidden');
+        }
+
+        function handleProgressChange(event) {
+            const progress = event.target.value;
+            document.getElementById('progressValue').textContent = `${progress}%`;
+            if (progress == 100) {
+                document.getElementById('projectStatus').value = 'completed';
+            }
+        }
+
+        function handleStatusChange(event) {
+            const status = event.target.value;
+            if (status === 'completed') {
+                document.getElementById('projectProgress').value = 100;
+                document.getElementById('progressValue').textContent = '100%';
+            }
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        async function saveProject(event) {
+            event.preventDefault();
+            showLoadingSpinner();
+
+            const form = event.target;
+            const projectId = form.elements['projectId'].value || Date.now().toString();
+            const projectData = {
+                id: projectId,
+                name: form.elements['projectName'].value,
+                description: form.elements['projectDescription'].value.replace(/\n/g, '<br/>').replace(/\t/g, '&emsp;'),
+                progress: parseInt(form.elements['projectProgress'].value),
+                status: form.elements['projectStatus'].value,
+            };
+
+            try {
+                const userRef = ref(db, `users/${currentUser.uid}`);
+                const userSnapshot = await get(userRef);
+                const userData = userSnapshot.val();
+                
+                if (!userData.projects) {
+                    userData.projects = {};
+                }
+
+                userData.projects[projectId] = projectData;
+
+                await update(userRef, { projects: userData.projects });
+
+                closeProjectModal();
+                fetchProjects();
+            } catch (error) {
+                console.error('Error saving project:', error);
+                alert('Failed to save project. Please try again.');
+            } finally {
+                hideLoadingSpinner();
+            }
+        }
+
+        function renderProjects(projects) {
+            const ongoingContainer = document.getElementById('ongoingProjects');
+            const upcomingContainer = document.getElementById('upcomingProjects');
+            const completedContainer = document.getElementById('completedProjects');
+
+            ongoingContainer.innerHTML = '';
+            upcomingContainer.innerHTML = '';
+            completedContainer.innerHTML = '';
+
+            Object.values(projects).forEach(project => {
+                const projectElement = createProjectElement(project);
+                switch (project.status) {
+                    case 'ongoing':
+                        ongoingContainer.appendChild(projectElement);
+                        break;
+                    case 'upcoming':
+                        upcomingContainer.appendChild(projectElement);
+                        break;
+                    case 'completed':
+                        completedContainer.appendChild(projectElement);
+                        break;
+                }
+            });
+        }
+
+        function createProjectElement(project) {
+            const div = document.createElement('div');
+            div.className = 'bg-gray-100 p-4 rounded-lg';
+            
+            // Truncate title to 20 characters
+            const truncatedTitle = project.name.length > 20 ? project.name.substring(0, 20) + '...' : project.name;
+            
+            // Get the first line of the description and truncate it to 50 characters
+            let firstLine = project.description.split('<br/>')[0];
+            const truncatedDescription = firstLine.length > 50 ? firstLine.substring(0, 50) + '...' : firstLine;
+
+            div.innerHTML = `
+                <h3 class="text-lg font-semibold overflow-hidden text-ellipsis whitespace-nowrap" title="${project.name}">${truncatedTitle}</h3>
+                <p class="text-sm text-gray-600 mb-2 overflow-hidden text-ellipsis whitespace-nowrap" title="${project.description}">${truncatedDescription}</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm font-medium">Progress: ${project.progress}%</span>
+                    <div>
+                        <button onclick="editProject('${project.id}')" class="text-blue-500 hover:text-blue-700 mr-2">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deleteProject('${project.id}')" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const descriptionElement = div.querySelector('p[title]');
+            const expandBtn = document.createElement('button');
+            expandBtn.className = 'text-blue-500 hover:text-blue-700 mt-2 p-2 border-2 border-slate-500 rounded';
+            expandBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show More';
+            div.insertBefore(expandBtn, div.lastElementChild);
+
+            expandBtn.addEventListener('click', () => {
+                if (descriptionElement.classList.contains('whitespace-nowrap')) {
+                    descriptionElement.classList.remove('whitespace-nowrap', 'text-ellipsis');
+                    descriptionElement.innerHTML = project.description;
+                    expandBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less';
+                } else {
+                    descriptionElement.classList.add('whitespace-nowrap', 'text-ellipsis');
+                    descriptionElement.textContent = truncatedDescription;
+                    expandBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show More';
+                }
+            });
+
+            return div;
+        }
+
+        async function fetchProjects() {
+            showLoadingSpinner();
+            const userRef = ref(db, `users/${currentUser.uid}`);
+            try {
+                const snapshot = await get(userRef);
+                const userData = snapshot.val();
+                userProjects = userData.projects || {};
+                renderProjects(userProjects);
+            } catch (error) {
+                console.error("Error fetching projects:", error);
+            } finally {
+                hideLoadingSpinner();
+            }
+        }
+
+        async function editProject(projectId) {
+            const project = userProjects[projectId];
+            if (project) {
+                openProjectModal(project);
+            }
+        }
+
+        async function deleteProject(projectId) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                showLoadingSpinner();
+                try {
+                    const userRef = ref(db, `users/${currentUser.uid}`);
+                    const userSnapshot = await get(userRef);
+                    const userData = userSnapshot.val();
+                    
+                    if (userData.projects && userData.projects[projectId]) {
+                        delete userData.projects[projectId];
+                        await update(userRef, { projects: userData.projects });
+                    }
+                    
+                    fetchProjects();
+                } catch (error) {
+                    console.error('Error deleting project:', error);
+                    alert('Failed to delete project. Please try again.');
+                } finally {
+                    hideLoadingSpinner();
+                }
+            }
+        }
+
+        function searchAndFilterProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            const filteredProjects = Object.values(userProjects).filter(project => {
+                const matchesSearch = project.name.toLowerCase().includes(searchTerm) ||
+                                      project.description.toLowerCase().includes(searchTerm);
+                const matchesStatus = statusFilter === 'all' || project.status === statusFilter;
+                return matchesSearch && matchesStatus;
+            });
+
+            renderProjects(filteredProjects);
+        }
+
+        async function fetchUserProfile() {
+            const userRef = ref(db, `users/${currentUser.uid}`);
+            const snapshot = await get(userRef);
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                const profilePic = document.getElementById('userProfilePic');
+                profilePic.src = userData.profileImageUrl || 'https://via.placeholder.com/150';
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                fetchUserProfile();
+                fetchProjects();
+            } else {
+                window.location.href = '/login.html'; // Redirect to login page
+            }
+        });
+
+        document.getElementById('addProjectBtn').addEventListener('click', () => openProjectModal());
+        document.getElementById('projectForm').addEventListener('submit', saveProject);
+        document.getElementById('projectProgress').addEventListener('input', handleProgressChange);
+        document.getElementById('projectStatus').addEventListener('change', handleStatusChange);
+        document.getElementById('searchInput').addEventListener('input', searchAndFilterProjects);
+        document.getElementById('statusFilter').addEventListener('change', searchAndFilterProjects);
+
+        // Make functions globally accessible
+        window.editProject = editProject;
+        window.deleteProject = deleteProject;
+        window.closeProjectModal = closeProjectModal;
+    </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | Endeavour</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+
+    <div id="content" class="hidden">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="bg-blue-600 h-48 flex items-center justify-center">
+                    <img id="profileImage" src="" alt="Profile Picture" class="h-32 w-32 rounded-full border-4 border-white shadow-lg">
+                </div>
+                <div class="p-6">
+                    <h1 id="userName" class="text-3xl font-bold text-center mb-4"></h1>
+                    <p id="userRole" class="text-gray-600 text-center mb-6"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h2 class="text-xl font-semibold mb-2">Personal Information</h2>
+                            <p>
+                                <strong>Email:</strong> 
+                                <span id="userEmail"></span>
+                                <span id="verifiedBadge" class="ml-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded hidden">Verified</span>
+                            </p>
+                            <button id="verifyEmailBtn" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-sm hidden">
+                                Verify Email
+                            </button>
+                            <p><strong>Reg No:</strong> <span id="userRegNo"></span></p>
+                            <p><strong>Gender:</strong> <span id="userGender"></span></p>
+                            <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold mb-2">Academic Information</h2>
+                            <p><strong>Programme:</strong> <span id="userProgramme"></span></p>
+                            <p><strong>Year:</strong> <span id="userYear"></span></p>
+                            <p><strong>Team Role:</strong> <span id="userTeamRole"></span></p>
+                            <p><strong>Trade:</strong> <span id="userTrade"></span></p>
+                            <p><strong>Post:</strong> <span id="userPost"></span></p>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h2 class="text-xl font-semibold mb-2">Social Media</h2>
+                        <div class="flex space-x-4">
+                            <a id="userLinkedin" href="#" target="_blank" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                            <a id="userInstagram" href="#" target="_blank" class="text-pink-600 hover:text-pink-800">
+                                <i class="fab fa-instagram fa-2x"></i>
+                            </a>
+                            <a id="userEmailIcon" href="#" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-envelope fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button id="editProfileBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Edit Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <h3 class="text-lg font-semibold mb-4">Edit Profile</h3>
+            <form id="editProfileForm">
+                <div class="mb-4">
+                    <label for="editPhone" class="block text-sm font-medium text-gray-700">Phone</label>
+                    <input type="tel" id="editPhone" name="editPhone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="editProgramme" class="block text-sm font-medium text-gray-700">Programme</label>
+                    <select id="editProgramme" name="editProgramme" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        <option value="ICD">ICD</option>
+                        <option value="B-tech">B-tech</option>
+                        <option value="B.Sc">B.Sc</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="editYear" class="block text-sm font-medium text-gray-700">Year</label>
+                    <input type="number" id="editYear" name="editYear" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="editTrade" class="block text-sm font-medium text-gray-700">Trade</label>
+                    <input type="text" id="editTrade" name="editTrade" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="editLinkedin" class="block text-sm font-medium text-gray-700">LinkedIn</label>
+                    <input type="url" id="editLinkedin" name="editLinkedin" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="editInstagram" class="block text-sm font-medium text-gray-700">Instagram</label>
+                    <input type="url" id="editInstagram" name="editInstagram" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="editProfileImage" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                    <input type="file" id="editProfileImage" name="editProfileImage" accept="image/*" class="mt-1 block w-full">
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" onclick="closeEditModal()" class="mr-2 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db, storage } from '/configs/firebase.js';
+        import { onAuthStateChanged, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { ref, get, update } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+        import { ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
+
+        let currentUser = null;
+
+        function showLoadingSpinner() {
+            document.getElementById('loadingSpinner').classList.remove('hidden');
+        }
+
+        function hideLoadingSpinner() {
+            document.getElementById('loadingSpinner').classList.add('hidden');
+        }
+
+        function updateProfile(userData) {
+            document.getElementById('profileImage').src = userData.profileImageUrl || 'https://via.placeholder.com/150';
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userRole').textContent = userData.role;
+            document.getElementById('userEmail').textContent = userData.email;
+            
+            document.getElementById('userRegNo').textContent = userData.regNo;
+            document.getElementById('userGender').textContent = userData.gender;
+            document.getElementById('userPhone').textContent = userData.phoneNumber;
+            document.getElementById('userProgramme').textContent = userData.programme;
+            document.getElementById('userYear').textContent = userData.year;
+            document.getElementById('userTeamRole').textContent = userData.teamRole;
+            document.getElementById('userTrade').textContent = userData.trade;
+            document.getElementById('userPost').textContent = userData.post || '';
+            
+            const linkedinLink = document.getElementById('userLinkedin');
+            if (userData.linkedin) {
+                linkedinLink.href = userData.linkedin;
+                linkedinLink.style.display = 'inline-block';
+            } else {
+                linkedinLink.style.display = 'none';
+            }
+
+            const emailLink = document.getElementById('userEmailIcon');
+            if (userData.email) {
+                emailLink.href = `mailto:${userData.email}?subject=Enquiry about team Endeavour`;
+                
+                emailLink.style.display = 'inline-block';
+            } else {
+                emailLink.style.display = 'none';
+            }
+
+            const instagramLink = document.getElementById('userInstagram');
+            if (userData.instagram) {
+                instagramLink.href = userData.instagram;
+                instagramLink.style.display = 'inline-block';
+            } else {
+                instagramLink.style.display = 'none';
+            }
+
+            // Handle email verification status
+            const verifiedBadge = document.getElementById('verifiedBadge');
+            const verifyEmailBtn = document.getElementById('verifyEmailBtn');
+            
+            if (currentUser.emailVerified) {
+                verifiedBadge.classList.remove('hidden');
+                verifyEmailBtn.classList.add('hidden');
+                // Set emailVerified to true in the database
+                updateEmailVerificationStatus(true);
+            } else {
+                verifiedBadge.classList.add('hidden');
+                verifyEmailBtn.classList.remove('hidden');
+                // Set emailVerified to false in the database
+                updateEmailVerificationStatus(false);
+            }
+        }
+
+        // Function to update emailVerified status in the database
+        async function updateEmailVerificationStatus(isVerified) {
+            try {
+                const userRef = ref(db, `users/${currentUser.uid}`);
+                await update(userRef, { emailVerified: isVerified });
+            } catch (error) {
+                console.error('Error updating email verification status:', error);
+            }
+        }
+
+        function populateEditForm(userData) {
+            document.getElementById('editPhone').value = userData.phoneNumber || '';
+            document.getElementById('editProgramme').value = userData.programme || '';
+            document.getElementById('editYear').value = userData.year || '';
+            document.getElementById('editTrade').value = userData.trade || '';
+            document.getElementById('editLinkedin').value = userData.linkedin || '';
+            document.getElementById('editInstagram').value = userData.instagram || '';
+            // Remove the line setting 'editPost' as it no longer exists in the form
+            // document.getElementById('editPost').value = userData.post || '';
+        }
+
+        function openEditModal() {
+            document.getElementById('editProfileModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editProfileModal').classList.add('hidden');
+        }
+
+        async function saveProfileChanges(event) {
+            event.preventDefault();
+            showLoadingSpinner();
+            const updatedData = {
+                phoneNumber: document.getElementById('editPhone').value,
+                programme: document.getElementById('editProgramme').value,
+                year: document.getElementById('editYear').value,
+                trade: document.getElementById('editTrade').value,
+                linkedin: document.getElementById('editLinkedin').value,
+                instagram: document.getElementById('editInstagram').value,
+                // Remove the 'post' field from here
+                // post: document.getElementById('editPost').value,
+            };
+
+            try {
+                const userRef = ref(db, `users/${currentUser.uid}`);
+                const profileImageInput = document.getElementById('editProfileImage');
+
+                if (profileImageInput.files.length > 0) {
+                    // Delete old profile image if it exists
+                    const oldUserData = (await get(userRef)).val();
+                    if (oldUserData.profileImageUrl) {
+                        const oldImageRef = storageRef(storage, oldUserData.profileImageUrl);
+                        await deleteObject(oldImageRef);
+                    }
+
+                    // Upload new profile image
+                    const imageFile = profileImageInput.files[0];
+                    const imageRef = storageRef(storage, `profile_images/${currentUser.uid}`);
+                    await uploadBytes(imageRef, imageFile);
+                    const imageUrl = await getDownloadURL(imageRef);
+                    updatedData.profileImageUrl = imageUrl;
+                }
+
+                await update(userRef, updatedData);
+                closeEditModal();
+                const newSnapshot = await get(userRef);
+                updateProfile(newSnapshot.val());
+                alert('Profile updated successfully!');
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Failed to update profile. Please try again.');
+            } finally {
+                hideLoadingSpinner();
+            }
+        }
+
+        async function sendVerificationEmail() {
+            showLoadingSpinner();
+            try {
+                await sendEmailVerification(currentUser);
+                alert('Verification email sent. Please check your inbox.');
+            } catch (error) {
+                console.error('Error sending verification email:', error);
+                alert('Failed to send verification email. Please try again later.');
+            } finally {
+                hideLoadingSpinner();
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                const userRef = ref(db, `users/${user.uid}`);
+                showLoadingSpinner();
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        updateProfile(userData);
+                        populateEditForm(userData);
+                        document.getElementById('content').classList.remove('hidden');
+                    } else {
+                        console.log("No user data found!");
+                    }
+                }).catch((error) => {
+                    console.error("Error fetching user data:", error);
+                }).finally(() => {
+                    hideLoadingSpinner();
+                });
+            } else {
+                console.log("No user is signed in.");
+                window.location.href = '/login.html'; // Redirect to login page
+            }
+        });
+
+        document.getElementById('editProfileBtn').addEventListener('click', openEditModal);
+        document.getElementById('editProfileForm').addEventListener('submit', saveProfileChanges);
+        document.getElementById('verifyEmailBtn').addEventListener('click', sendVerificationEmail);
+        window.closeEditModal = closeEditModal;
+    </script>
+</body>
+</html>

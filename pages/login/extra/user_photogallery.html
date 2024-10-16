@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo_Gallery</title>
+    <style>
+    .photo_gallery{
+    display: block;
+    margin: 10px auto;
+    width: 300px;
+    height: 50px;
+    /*transition: all 0.5s ease 0s;*/
+    background-color: #ebebeb;
+    color: rgb(9, 9, 9);
+    border: 2px solid rgb(177, 55, 7);
+    border-radius: 10px;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    }
+    .extend{
+        width: 326px;
+    }
+    </style>
+</head>
+<body>
+
+    <div>
+      <button
+      id="upbtn"
+      class="photo_gallery"
+      onclick="document.getElementById('getFile').click()"
+      >
+      Tap to upload Photo
+    </button>
+    <input type="file" id="getFile" style="display: none" />
+    
+    <input type="submit" id="submitbtn" class="submit" />
+    </div>
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+    
+    import {
+      getStorage,
+      ref,
+      uploadBytes,
+      getDownloadURL,
+    } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+    import {
+      getDatabase,
+      set,
+      ref as dbRef,
+    } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+
+
+  
+
+  const firebaseConfig={
+  apiKey: "AIzaSyB1Ha5LYqm2j5mfbLWUNuWOeZ2Vp9aT50I",
+  authDomain: "endeavouradminpanel.firebaseapp.com",
+  databaseURL: "https://endeavouradminpanel-default-rtdb.firebaseio.com",
+  projectId: "endeavouradminpanel",
+  storageBucket: "endeavouradminpanel.appspot.com",
+  messagingSenderId: "1059223226055",
+  appId: "1:1059223226055:web:b5493b3554d9d03e2d20e2",
+  measurementId: "G-0JFS3KJQQB",
+  };
+  initializeApp(firebaseConfig);
+    const root = getDatabase();
+    const storage = getStorage();
+    let uid;
+    uid = Date.now();
+    let photo;
+    const fileInput = document.getElementById("getFile");
+    fileInput.onchange = () => {
+      const selectedFile = fileInput.files[0];
+      photo = selectedFile;
+      document.getElementById("upbtn").innerHTML = "photo : " + photo.name;
+    }
+    function upload() {
+    const storageRef = ref(storage, uid + "photo");
+    uploadBytes(storageRef, photo).then((snapshot) => {
+    alert("uploaded photo");
+    getDownloadURL(storageRef)
+    .then((url) => {
+                  alert("then is working");
+                        // if(resume)
+                        //     upload1(url);
+                        // else
+                        //     getready(url,"");
+                        // `url` is the download URL for 'images/stars.jpg'
+                    })
+                    .catch((error) => {
+                        // Handle any errors
+                    });
+  
+                }
+    )
+            }
+    submitbtn.addEventListener("click",(e) => {
+        e.preventDefault();
+        // alert("this is working");
+        upload();
+    })
+    </script>
+    
+</body>
+</html>
