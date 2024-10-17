@@ -26,7 +26,9 @@ function fetchPopupData() {
     onValue(popupRef, (snapshot) => {
         try {
             let popupData = snapshot.val();
+            if(popupData.isTrue){
             showPopup(popupData.title, popupData.message, popupData.link);
+            }
         } catch (error) {
             console.error("Error fetching or processing users:", error);
         } finally {
