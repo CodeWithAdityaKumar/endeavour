@@ -237,10 +237,9 @@
                     const notificationElement = document.createElement('div');
                     notificationElement.className = 'bg-gray-100 p-3 rounded mb-2';
                     
-                    // Truncate title to 20 characters
                     const truncatedTitle = notification.title.length > 20 ? notification.title.substring(0, 20) + '...' : notification.title;
                     
-                    // Get the first line of the message and truncate it to 50 characters
+                    
                     let firstLine = notification.message.split('<br/>')[0];
                     const truncatedMessage = firstLine.length > 50 ? firstLine.substring(0, 50) + '...' : firstLine;
                     
@@ -272,7 +271,6 @@
                 });
         }
 
-        // Add event listener for logout button
         const logoutButton = document.getElementById('logoutButton');
         if (logoutButton) {
             logoutButton.addEventListener('click', logout);
@@ -283,9 +281,27 @@
                 currentUser = user;
                 fetchNotifications();
             } else {
-                window.location.href = '/login.html'; // Redirect to login page
+                window.location.href = '/pages/login/loginas.html'; 
             }
         });
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    closeMobileMenu.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
     </script>
 </body>
 
