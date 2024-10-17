@@ -44,6 +44,65 @@
   
         </script>
 
+<style>
+    .popup {
+    display: none;
+    /* display: flex; */
+    align-items: center;
+
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    position: relative;
+}
+#popup-title{
+    color: crimson;
+    padding-bottom: 10px;
+}
+#popup-message{
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.popup-btn{
+    display: none;
+    padding: 8px 25px;
+    
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: crimson;
+    color: white;
+}
+
+.close-popup {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-popup:hover,
+.close-popup:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
 
 
 </head>
@@ -51,6 +110,18 @@
 <body>
 
     <canvas class="background" style="visibility: visible; width: 100%; height: 100%;" width="750" height="1334"></canvas>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p class="close-popup">&times;</p>
+            <h2 id="popup-title">Announcement</h2>
+            <p id="popup-message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis similique, doloribus quod quisquam nihil voluptate assumenda excepturi, dolore voluptas magnam fugiat optio saepe quibusdam architecto quos voluptatum asperiores culpa quasi obcaecati aliquam reiciendis dicta!
+                
+            </p>
+            <a href="/" class="popup-btn" id="popup-btn">LINK</a>
+            
+        </div>
+    </div>
 
     <nav>
         <div class="container">
@@ -165,6 +236,7 @@
     
     <footer id="footer"></footer>
     <script src="/scripts/script.js"></script>
+    <script src="/scripts/popUpMsg.js" type="module"></script>
     <script src="/scripts/footer.js"></script>
 
 
