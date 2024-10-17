@@ -25,20 +25,20 @@ footer.innerHTML = `
                         <th></th>
                     </tr>
                     <tr>
-                        <td><a href="/pages/about">About Us</a></td>
-                        <td><a href="/pages/projects/Unmanned-Aerial-Vehicles">UAVs</a></td>
+                        <td><a href="/pages/about.html">About Us</a></td>
+                        <td><a href="/pages/projects/Unmanned-Aerial-Vehicles.html">UAVs</a></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><a href="/pages/about">Our History</a></td>
-                        <td><a href="/pages/projects/Unmanned-Ground-Vehicles">UGVs</a></td>
+                        <td><a href="/pages/about.html">Our History</a></td>
+                        <td><a href="/pages/projects/Unmanned-Ground-Vehicles.html">UGVs</a></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><a href="/pages/teams">Meet The Team</a></td>
-                        <td><a href="/pages/Research">Research Projects</a></td>
+                        <td><a href="/pages/teams.html">Meet The Team</a></td>
+                        <td><a href="/pages/projects/Research.html">Research Projects</a></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -51,9 +51,9 @@ footer.innerHTML = `
                 </tbody>
             </table>
             <div class="contactContainer">
-                <p><i class="fas fa-id-badge"></i> &nbsp; Utsav Anand : <a href="tel:+917654323762">+91 8968343016</a>
+                <p style="font-size:"><i class="fas fa-id-badge"></i> &nbsp; Indra Kumar : <a href="tel:+919548304247">+91 9548304247</a>
                 </p><br>
-                <p><i class="fas fa-id-badge"></i> &nbsp; G Sai Harsh : <a href="tel:+919740734156">+91 8085692977</a>
+                <p style="font-size:"><i class="fas fa-id-badge"></i> &nbsp; Mousum Sarmah : <a href="tel:+916901070063">+91 6901070063</a>
                 </p>
             </div>
         </div>
