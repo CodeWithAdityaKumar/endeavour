@@ -1,8 +1,13 @@
 import { db} from "../configs/firebase.js"
 import { ref,onValue } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
-// firebase.initializeApp(firebaseConfig);
 
-// const database = firebase.database();
+function showLoadingSpinner() {
+    document.getElementById('loadingSpinner').style.display = 'flex';
+}
+
+function hideLoadingSpinner() {
+    document.getElementById('loadingSpinner').style.display = 'none';
+}
 const database = db;
 
 function showPopup(title, message, link) {
@@ -26,9 +31,13 @@ function fetchPopupData() {
     onValue(popupRef, (snapshot) => {
         try {
             let popupData = snapshot.val();
+
+            showLoadingSpinner()
+
             if(popupData.isTrue){
-            showPopup(popupData.title, popupData.message, popupData.link);
+                showPopup(popupData.title, popupData.message, popupData.link);
             }
+            hideLoadingSpinner()
         } catch (error) {
             console.error("Error fetching or processing users:", error);
         } finally {
